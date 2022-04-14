@@ -62,7 +62,7 @@ class App {
         let pokemonName = document.querySelector('input').value.toLowerCase();
         if (this.pokemon.includes(pokemonName)) {
           let pokemonInfo = await this.getPokemonInfo(pokemonName);
-          this.setPokedex(pokemonInfo);
+          this.renderPokedex(pokemonInfo);
         } else {
           alert(`That's not a pokemon!`);
         }
@@ -196,7 +196,7 @@ class App {
    * For setting the pokedex card
    * **/
 
-  setPokedex(obj) {
+  renderPokedex(obj) {
     console.log(`from setPokedex`, obj.evolutionChain);
     const name = obj.name;
     const number = obj.number;
