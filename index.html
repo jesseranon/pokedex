@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="This is where your description goes">
+    	<meta name="keywords" content="one, two, three">
+		<meta name="viewport" content="width=device-width">
+
+		<title>Pokédex</title>
+
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<header>
+			<h1>Pokédex</h1>
+
+			<form action="#">
+				<label for="pokemon-input">Choose your Pokemon!</label>
+				<input type="text" name="pokemon-input" value="" >
+				<button id="search-btn" type="button" name="button">I choose you!</button>
+			</form>
+
+		</header>
+
+		<article class="pokedex">
+
+			<section class="pokedex-top">
+				<div class="pokemon-img">
+					<img class="sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/321.png" alt="">
+				</div>
+				
+				<div class="pokemon-info">
+					<p>No. <span class="number">Number</span> <span class="name">Name</span></p>
+					<p><span class="genus">Genus</span></p>
+					<div class="horizontal"><p>TYPE</p> <ul class="types"></ul></div>
+					<p>HEIGHT <span class="height"></span></p>
+					<p>WEIGHT <span class="weight"></span></p>
+				</div>
+			</section>
+			
+
+			<div class="flavor-text"> <p>Flavor Text Goes Here.</p></div>
+		</article>
+
+		<aside class="evolutions">
+		</aside>
+
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
