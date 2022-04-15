@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', appInit);
 async function appInit() {
   const app = new App();
   app.init();
-  console.log(app);
+  // console.log(app);
   let species = await app.getPokemonInfo('pikachu');
-  console.log(species);
+  // console.log(species);
 }
 
 class App {
@@ -200,7 +200,7 @@ class App {
    * **/
 
   async renderPokedex(obj) {
-    console.log(`from setPokedex`, obj.evolutionChain);
+    // console.log(`from setPokedex`, obj.evolutionChain);
     const name = obj.name;
     const number = obj.number;
     const height = obj.height;
@@ -253,7 +253,7 @@ class App {
       for (const evolution of evolutions) {
           let listItem = document.createElement('li');
           let anchor = document.createElement('a');
-          anchor.setAttribute('href', '#');
+          anchor.setAttribute('href', '#pokedex');
           let img = document.createElement('img');
           img.src = evolutionChain[evolution];
           img.alt = evolution;
@@ -261,8 +261,8 @@ class App {
           listItem.appendChild(anchor);
           evolutionTree.classList.add('horizontal');
           evolutionTree.appendChild(listItem);
-          console.log(evolution);
-          console.log(evolutionChain[evolution]);
+          // console.log(evolution);
+          // console.log(evolutionChain[evolution]);
         }
 
       this.pokedex.evolutions.appendChild(evolutionTree);
@@ -270,7 +270,6 @@ class App {
       let evolutionTreeLinks = Array.from(document.querySelectorAll('.evolution-tree li a'));
       for (const link of evolutionTreeLinks) {
         link.addEventListener('click', async e => {
-          e.preventDefault();
           let pokemonName = e.currentTarget.childNodes[0].alt;
           if (this.pokemon.includes(pokemonName)) {
             let pokemonInfo = await this.getPokemonInfo(pokemonName);

@@ -5,6 +5,7 @@
 /* Box Model Hack */
 *{
   box-sizing: border-box;
+  scroll-behavor: smooth;
 }
 
 /*
@@ -31,7 +32,7 @@ ul {
 
 p,
 span {
-  height: 1.5rem;
+  min-height: 1.5rem;
   line-height: 1.5rem;
 }
 
@@ -44,9 +45,10 @@ span {
 /*******************************************/
 
 img{
-  height: 100%;
+  min-height: 100%;
+  width: 100%;
   display: block;
-  margin: 0 auto;
+  object-fit: contain;
 }
 
 label,
@@ -99,11 +101,6 @@ form > * {
   
 }
 
-.sprite {
-  object-fit: contain;
-  width: 100%;
-}
-
 .pokemon-info {
   padding-bottom: 10%;
 }
@@ -122,8 +119,8 @@ form > * {
 
 .flavor-text {
   width: 100%;
-  height: 100%;
-  min-height: 10vh;
+  min-height: 100%;
+
   background: white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -133,18 +130,20 @@ form > * {
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   border: none;
 }
 
 .evolution-tree li {
   display: inline-block;
-  height: 20rem;
+  min-height: 20rem;
+  width: 20rem;
 }
 
 .evolution-tree li a {
   display: inline-block;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
@@ -153,19 +152,18 @@ form > * {
   text-align: center;
 }
 
+#pokedex {
+  transform: transition 300ms ease-out;
+}
+
 @media (min-width: 35rem) {
   .evolution-tree {
     display: flex;
     margin: 0 auto;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
     gap: 1rem;
   }
-
-  /* .pokedex {
-    aspect-ratio: 16 /9;
-  } */
 
   .pokemon-img {
     width: 45%;
@@ -184,7 +182,7 @@ form > * {
 
   .flavor-text {
     padding: 2rem 2rem;
-    max-height: 4rem;
+    min-height: 4rem;
   }
 
 }
