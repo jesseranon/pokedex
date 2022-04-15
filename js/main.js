@@ -57,6 +57,9 @@ class App {
     const data = await this.getFetch();
     if (this.pokemon.length === 0) this.pokemon = this.pokemon.concat(data.pokemon_entries.map(p => p.pokemon_species.name));
     if (this.numberOfPokemon === 0) this.numberOfPokemon = data.pokemon_entries.length;
+    let defaultPokemon = 'pikachu';
+    let defaultData = await this.getPokemonInfo(defaultPokemon);
+    this.renderPokedex(defaultData);
     this.searchBtn.addEventListener('click', async e => {
         e.preventDefault();
         let pokemonName = document.querySelector('input').value.toLowerCase();
