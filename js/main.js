@@ -40,7 +40,7 @@ class App {
       weight: document.querySelector('.pokemon-info .weight'),
       sprite: document.querySelector('.pokemon-img .sprite'),
       types: document.querySelector('.pokemon-info .types'),
-      flavorText: document.querySelector('.pokedex .flavor-text'),
+      flavorText: document.querySelector('.pokedex .flavor-text p'),
       evolutions: document.querySelector('.evolutions'),
     }
     this.history = {};
@@ -196,7 +196,7 @@ class App {
    * For setting the pokedex card
    * **/
 
-  renderPokedex(obj) {
+  async renderPokedex(obj) {
     console.log(`from setPokedex`, obj.evolutionChain);
     const name = obj.name;
     const number = obj.number;
@@ -215,17 +215,30 @@ class App {
     this.pokedex.genus.textContent = genus;
 
     this.pokedex.sprite.src = sprite;
-    this.pokedex.sprite.alt = name;
+    this.pokedex.sprite.alt = name;    
 
-    // types
+    // evolutions
+    this.renderTypes(types);
+    await this.renderEvolutions(evolutionChain);
+
+  }
+
+  renderTypes(arr) {
+    let types = arr;
     this.pokedex.types.textContent = '';
     types.forEach(type => {
       const listItem = document.createElement('li');
-      listItem.textContent = type;
+      listItem.classList.add(type);
+      let span = document.createElement('span');
+      span.classList.add('type');
+      span.textContent = type;
+      listItem.appendChild(span);
       this.pokedex.types.appendChild(listItem);
     });
+  }
 
-    // evolutions
+  async renderEvolutions(obj) {
+    let evolutionChain = obj;
     const evolutions = Object.keys(evolutionChain);
     this.pokedex.evolutions.textContent = '';
 
@@ -250,14 +263,27 @@ class App {
         }
 
       this.pokedex.evolutions.appendChild(evolutionTree);
+
+      let evolutionTreeLinks = Array.from(document.querySelectorAll('.evolution-tree li a'));
+      for (const link of evolutionTreeLinks) {
+        link.addEventListener('click', async e => {
+          e.preventDefault();
+          let pokemonName = e.currentTarget.childNodes[0].alt;
+          if (this.pokemon.includes(pokemonName)) {
+            let pokemonInfo = await this.getPokemonInfo(pokemonName);
+            this.renderPokedex(pokemonInfo);
+          } else {
+            alert(`That's not a pokemon!`);
+          }
+        });
+      }
+
     } else {
         const newElement = document.createElement('span');
         newElement.classList.add('centered');
         newElement.textContent = 'No evolutions known for this Pokémon';
         this.pokedex.evolutions.appendChild(newElement);
     }
-    
-
   }
   /** 
    * helper function

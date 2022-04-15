@@ -7,9 +7,14 @@
   box-sizing: border-box;
 }
 
-/******************************************
-/* LAYOUT
-/*******************************************/
+/*
+/* BASE AND BASE STYLES
+*/
+
+body {
+  background: lightgreen;
+}
+
 header {
   padding-left: 5vw;
 }
@@ -20,21 +25,34 @@ ul {
   padding: 0;
 }
 
-img{
-  display: block;
-  margin: 0 auto;
+ul {
+  list-style: none;
 }
 
-ul,
-.evolution-tree {
-  list-style: none;
+p,
+span {
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.type {
+  text-transform: uppercase;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+img{
+  height: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 label,
 input,
 button {
   display: block;
-  margin-top: 1rem;
 }
 
 header {
@@ -53,31 +71,41 @@ form > * {
 .pokedex {
   width: 100vw;
   max-width: 75ch;
-  aspect-ratio: 16 /9;
   margin: 1rem auto;
-  border: 1px solid red;
+  background-color: lightblue;
 
   display: flex;
   flex-direction: column;
+
+  border-radius: 5px;
 }
 
 .pokedex-top {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 
+.pokedex-top > div {
+  background: transparent;
+}
+
+.pokedex > div {
+  flex: 0 1 auto;
+}
+
 .pokemon-img {
-  background: green;
+  min-height: 20vh;
+  
 }
 
 .sprite {
   object-fit: contain;
-  height: 100%;
+  width: 100%;
 }
 
 .pokemon-info {
-  background: lightblue;
-  padding-top: 10%;
+  padding-bottom: 10%;
 }
 
 .pokemon-info > p,
@@ -94,18 +122,30 @@ form > * {
 
 .flavor-text {
   width: 100%;
-  max-height: 4rem;
-}
-
-.evolutions {
-  height: 40%;
-  background: lightgray;
+  height: 100%;
+  min-height: 10vh;
+  background: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .evolution-tree {
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   gap: 2rem;
+  border: none;
+}
+
+.evolution-tree li {
+  display: inline-block;
+  height: 20rem;
+}
+
+.evolution-tree li a {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 
 .centered {
@@ -118,16 +158,24 @@ form > * {
     display: flex;
     margin: 0 auto;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     gap: 1rem;
   }
 
+  /* .pokedex {
+    aspect-ratio: 16 /9;
+  } */
+
   .pokemon-img {
-    flex-grow: 4;
+    width: 45%;
   }
 
   .pokemon-info {
-    flex-grow: 6;
+    width: 55%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 
   .pokedex-top {
@@ -136,7 +184,9 @@ form > * {
 
   .flavor-text {
     padding: 2rem 2rem;
+    max-height: 4rem;
   }
+
 }
 
 /******************************************
